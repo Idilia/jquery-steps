@@ -998,6 +998,11 @@ function renderPagination(wizard, options, state)
             buttonTemplate = "<li><a href=\"#{0}\" role=\"menuitem\">{1}</a></li>",
             buttons = "";
 
+        if (options.enableCancelButton)
+        {
+            buttons += buttonTemplate.format("cancel", options.labels.cancel);
+        }
+
         if (!options.forceMoveForward)
         {
             buttons += buttonTemplate.format("previous", options.labels.previous);
@@ -1008,11 +1013,6 @@ function renderPagination(wizard, options, state)
         if (options.enableFinishButton)
         {
             buttons += buttonTemplate.format("finish", options.labels.finish);
-        }
-
-        if (options.enableCancelButton)
-        {
-            buttons += buttonTemplate.format("cancel", options.labels.cancel);
         }
 
         wizard.append(pagination.format(options.actionContainerTag, options.clearFixCssClass,

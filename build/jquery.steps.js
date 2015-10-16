@@ -1,6 +1,6 @@
 /*! 
- * jQuery Steps v1.1.0 - 09/04/2014
- * Copyright (c) 2014 Rafael Staib (http://www.jquery-steps.com)
+ * Idilia jQuery Steps v1.1.1 - 10/16/2015
+ * Copyright (c) 2015 Rafael Staib (http://www.jquery-steps.com)
  * Licensed under MIT http://www.opensource.org/licenses/MIT
  */
 ;(function ($, undefined)
@@ -1058,6 +1058,11 @@ function renderPagination(wizard, options, state)
             buttonTemplate = "<li><a href=\"#{0}\" role=\"menuitem\">{1}</a></li>",
             buttons = "";
 
+        if (options.enableCancelButton)
+        {
+            buttons += buttonTemplate.format("cancel", options.labels.cancel);
+        }
+
         if (!options.forceMoveForward)
         {
             buttons += buttonTemplate.format("previous", options.labels.previous);
@@ -1068,11 +1073,6 @@ function renderPagination(wizard, options, state)
         if (options.enableFinishButton)
         {
             buttons += buttonTemplate.format("finish", options.labels.finish);
-        }
-
-        if (options.enableCancelButton)
-        {
-            buttons += buttonTemplate.format("cancel", options.labels.cancel);
         }
 
         wizard.append(pagination.format(options.actionContainerTag, options.clearFixCssClass,
@@ -1301,6 +1301,7 @@ function validateArgument(argumentName, argumentValue)
         throwError("The argument '{0}' is null or undefined.", argumentName);
     }
 }
+
 
 /**
  * Represents a jQuery wizard plugin.
